@@ -4,10 +4,10 @@ const path = require('path');
 const app = express();
 const PORT = 5000;
 const multer = require('multer');
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid'); 
 
-const upload = multer({
-  dest: 'uploads/',
+const upload = multer({ // Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.   
+  dest: 'uploads/',  //The destination directory for the uploaded files. If dest is not set, the operating system's default directory for temporary files is used. 
 });
 
 const transcriptions = [
@@ -77,9 +77,9 @@ const messages = [
     }
 ];
 
-app.use(cors());
-app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cors()); //CORS is a node.js package (middleware)for providing a Connect/Express middleware that can be used to enable CORS with various options.
+app.use(express.json()); //express.json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object. This method is called as a middleware in your application using the code: app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); //express.static is a built-in middleware function in Express. It serves static files and is based on serve-static.
 
 app.get('/', (req, res) => {
   res.send('Backend is working!');
